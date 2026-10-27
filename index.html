@@ -470,7 +470,7 @@ const AI={
  A1:{nome:'Aerobico lento',sistema:'Aerobico estensivo',lat:'1–2 mmol/L',fcp:[60,70],sens:'Facile, potresti parlare',rpe:'2–3 su 10',rip:'100–600 m o nuotate continue',rec:'10–20"',vol:'300–1500 m',scopo:'Capillarizzazione, economia di nuotata e recupero attivo. È la base di riscaldamento e defaticamento, e per i master è il terreno ideale per curare la tecnica.',es:['2x300 SL A1','400 misti sciolto','6x100 dorso A1'],res:30,recH:12},
  A2:{nome:'Aerobico medio',sistema:'Aerobico intensivo (soglia aerobica)',lat:'2–3 mmol/L',fcp:[70,80],sens:'Ritmo sostenibile a lungo, respiro regolare',rpe:'4–5 su 10',rip:'100–300 m',rec:'15–25"',vol:'800–2000 m',scopo:'Aumenta la capacità aerobica: permette di reggere la seduta e di recuperare meglio tra le ripetute veloci.',es:['6x200 SL A2','4x300 braccia A2','10x100 A2'],res:30,recH:24},
  B1:{nome:'Soglia anaerobica',sistema:'Aerobico-anaerobico (soglia)',lat:'3–5 mmol/L',fcp:[80,88],sens:'Impegnativo ma controllato, ritmo costante',rpe:'6–7 su 10',rip:'50–300 m',rec:'15–30"',vol:'600–1500 m',scopo:'Alza la velocità che puoi tenere senza accumulare lattato: è il lavoro più redditizio per un master, dai 200 in su e per la tenuta nei 100.',es:['10x100 B1','4x200 B1','3x(4x75) B1'],res:30,recH:48},
- B2:{nome:'Massimo consumo di ossigeno',sistema:'Potenza aerobica (VO2max)',lat:'6–8 mmol/L',fcp:[88,94],sens:'Duro, respiro affannoso a fine ripetuta',rpe:'8 su 10',rip:'50–150 m (mai 200 o più)',rec:'Pari al tempo di nuotata o più (1:1–1:1,5)',vol:'300–800 m',scopo:'Sviluppa la potenza aerobica massima, che con l\'età cala per prima: tenerla allenata a piccole dosi fa la differenza nei 100 e nei 200.',es:['6x100 B2 rec 1:1','8x75 B2','10x50 B2'],res:25,recH:60},
+ B2:{nome:'Massimo consumo di ossigeno',sistema:'Potenza aerobica (VO2max)',lat:'6–8 mmol/L',fcp:[88,94],sens:'Duro, respiro affannoso a fine ripetuta',rpe:'8 su 10',rip:'25–100 m (mai oltre i 100)',rec:'Pari al tempo di nuotata o più (1:1–1:1,5)',vol:'300–800 m',scopo:'Sviluppa la potenza aerobica massima, che con l\'età cala per prima: tenerla allenata a piccole dosi fa la differenza nei 100 e nei 200.',es:['6x100 B2 rec 1:1','8x75 B2','10x50 B2'],res:25,recH:60},
  C1:{nome:'Tolleranza lattacida',sistema:'Capacità lattacida',lat:'8–12 mmol/L',fcp:[94,100],sens:'Molto duro, braccia pesanti nel finale',rpe:'9 su 10',rip:'25–100 m',rec:'1:1,5–1:2 o serie a blocchi',vol:'200–400 m',scopo:"Insegna a mantenere tecnica e velocità con molto lattato: è ciò che decide l'ultimo 25 di un 100.",es:['6x75 C1','2x(4x50) C1','4x100 C1 rec 1:2'],res:18,recH:72},
  C2:{nome:'Potenza lattacida',sistema:'Picco di produzione del lattato',lat:'12–20 mmol/L',fcp:[97,100],sens:'Massimale, a tutta',rpe:'10 su 10',rip:'25–75 m',rec:"Lunghi, 3'–5'",vol:'100–250 m',scopo:'Allena la velocità massima sostenibile per 30–60": la velocità del 50 e del 100. Per un master va dosata con cura: poche ripetute e recuperi lunghi.',es:["6x50 C2 rec 3'","4x50 dal blocco","8x25 C2"],res:18,recH:96},
  C3:{nome:'Velocità alattacida',sistema:'Anaerobico alattacido (ATP-CP)',lat:'Basso (sotto 4 mmol/L)',fcp:null,sens:'Esplosivo e breve, fresco ogni volta',rpe:'9–10, ma per pochi secondi',rip:'10–25 m, sforzi di 6–15"',rec:"Completo, 1'–2'",vol:'100–200 m',scopo:'Velocità massima, frequenza di bracciata, partenze e virate. Con l\'età la velocità pura cala per prima: poche ripetute brevi e frequenti la mantengono senza affaticare.',es:["6x25 C3 rec 1'30\"","8x15 m sprint","4x12,5 m dal blocco"],res:5,recH:36}
@@ -776,7 +776,7 @@ const MAINCFG={
  A1:{d:[400,300,500],cap:3000,min:2,share:.45,n:['nuotata lunga, respirazione bilaterale','tecnica pulita, conta le bracciate']},
  A2:{d:[200,300,400],cap:3000,min:4,share:.45,n:['ritmo costante','seconda metà più veloce della prima']},
  B1:{d:[100,200,150],cap:2400,min:5,share:.4,n:['ritmo di soglia costante, ultime uguali alle prime','tieni lo stesso tempo su tutte']},
- B2:{d:[100,150,50],cap:1600,min:5,share:.3,n:['ritmo vicino al 400 gara','ritmo 200 gara + 3"']},
+ B2:{d:[100,75,50],cap:1600,min:5,share:.3,n:['ritmo vicino al 400 gara','ritmo 200 gara + 3"']},
  C1:{d:[100,75,50],cap:900,min:4,share:.2,n:['tieni il tempo nonostante la fatica','qualità tecnica anche nel finale']},
  C2:{d:[50,75],cap:400,min:4,share:.12,n:['massimo sforzo, recupero attivo','partenza dal blocco, a tutta']},
  C3:{d:[25],cap:300,min:6,share:.08,n:['sprint lanciato dalla virata, recupero completo','partenza dal blocco, frequenza massima nei primi 10 m']}};
@@ -797,7 +797,7 @@ const shapeOf=b=>b.shape||((+b.rounds>1?b.rounds+'x':'')+'('+b.rows.map(r=>r.dis
 /* Strutture della serie centrale: ognuna costruisce UN giro, poi scaleSet la adatta al volume */
 const MAIN_T=[
  {k:'ripetute',lab:'ripetute',ands:ANDS,mode:'fixed',build:(a,st,tgt,sty)=>{const c=MAINCFG[a];const d=pickDist(a,c.d,sty);return[R(Math.max(c.min,Math.round(tgt/d)),d,st,'N',a,pick(c.n))]}},
- {k:'piramide',mode:'shape',lab:'piramide',ands:['A2','B1','B2'],build:a=>{const D=a==='B2'?[50,100,150,100,50]:a==='B1'?[100,200,300,200,100]:[100,200,300,400,300,200,100];return D.map((d,i)=>R(1,d,'@','N',a,i===0?'piramide: stesso ritmo per 100 su ogni distanza':''))}},
+ {k:'piramide',mode:'shape',lab:'piramide',ands:['A2','B1','B2'],build:a=>{const D=a==='B2'?[50,75,100,75,50]:a==='B1'?[100,200,300,200,100]:[100,200,300,400,300,200,100];return D.map((d,i)=>R(1,d,'@','N',a,i===0?'piramide: stesso ritmo per 100 su ogni distanza':''))}},
  {k:'scala',mode:'shape',lab:'scala discendente',ands:['A2','B1'],build:a=>{const L={A2:['A2','A2','A2','B1'],B1:['A2','B1','B1','B2'],B2:['B1','B1','B2','B2']}[a];return[400,300,200,100].map((d,i)=>R(1,d,'@','N',L[i],i===0?'distanza che scende, andatura che sale':''))}},
  {k:'giri',mode:'rounds',lab:'giri 200-100-50',ands:['A2','B1','C1'],build:a=>a==='C1'?[R(1,100,'@','N','C1','giro: 100+50+50 tutti forti'),R(2,50,'@','N','C1'),R(1,100,'ST','N','A1','sciolto')]:[R(1,200,'@','N',a,'giro: 200+100+50, il 50 più veloce'),R(1,100,'@','N',a),R(1,50,'@','N',a==='A2'?'B1':a==='B1'?'B2':a)]},
  {k:'spezzati',mode:'rounds',lab:'spezzati',ands:['B1','B2','C1','C2'],build:a=>a==='C2'?[R(4,25,'@','N','C2','100 spezzato: 10" tra i 25, ritmo gara'),R(1,100,'ST','N','A1','recupero sciolto')]:[R(4,50,'@','N',a,'200 spezzato: 10" tra i 50'),...(a==='B1'?[]:[R(1,100,'ST','N','A1','recupero sciolto')])]},
@@ -896,14 +896,17 @@ function learnStyle(){
   styCache=st;styAt=STYV;return st}
 function recentShapes(date,extra){const s=new Set();const from=addDays(date,-10);for(const w of S.workouts)if(w.date>=from&&w.date<date)w.blocks.forEach(b=>s.add(shapeOf(b)));(extra||[]).forEach(x=>s.add(x));return s}
 /* ---------- Libreria serie: migliaia di combinazioni di distanze per andatura ----------
-   Regola: da B2 in su (B2, C1, C2, C3) mai ripetute da 200 m o più. */
+   Regola: B2, C1 e C2 mai ripetute oltre i 100 m; C3 mai oltre i 50 m. */
 const FAST=['B2','C1','C2','C3'];
-const LIBD={A1:[100,200,300,400,500,600,800,1000],A2:[50,100,150,200,300,400,500,600],B1:[50,75,100,150,200,300,400],B2:[25,50,75,100,150],C1:[25,50,75,100,150],C2:[25,50,75,100],C3:[10,15,20,25]};
+/* distanza massima di una ripetuta: B2, C1, C2 mai oltre 100 m; C3 mai oltre 50 m */
+const FASTMAX={B2:100,C1:100,C2:100,C3:50};
+const tooLong=r=>FASTMAX[r.and]&&+r.dist>FASTMAX[r.and]&&!r.tec&&!r.mix;
+const LIBD={A1:[100,200,300,400,500,600,800,1000],A2:[50,100,150,200,300,400,500,600],B1:[50,75,100,150,200,300,400],B2:[25,50,75,100],C1:[25,50,75,100],C2:[25,50,75,100],C3:[10,15,20,25]};
 const LIBV={A1:[600,3000],A2:[800,3000],B1:[500,2400],B2:[250,1600],C1:[150,900],C2:[100,400],C3:[60,300]};
 const LIBN={A1:['ritmo sciolto, tecnica pulita','respirazione bilaterale','allunga la bracciata'],A2:['ritmo costante','seconda metà più veloce','conta le bracciate per vasca'],B1:['ritmo di soglia costante','tieni lo stesso tempo su tutte','ultime uguali alle prime'],B2:['ritmo 200 gara','duro ma costante','ritmo 400 gara'],C1:['tieni il tempo nonostante la fatica','qualità tecnica nel finale','ritmo 100 gara'],C2:['massimo sforzo','ritmo gara o più veloce','a tutta, recupero attivo','partenza dal blocco, ritmo gara'],C3:['partenza dal blocco','lanciati dalla virata','da fermo in acqua, senza spinta dal muro']};
 const LIBCACHE={};
 function setLib(a){if(LIBCACHE[a])return LIBCACHE[a];const D=LIBD[a],[lo,hi]=LIBV[a];const out=[];const seen=new Set();const notes=LIBN[a];
-  const add=(rows,rounds,lab,ni)=>{if(FAST.includes(a)&&rows.some(r=>r.dist>=200))return;const m=rows.reduce((x,r)=>x+r.reps*r.dist,0)*rounds;if(m<lo||m>hi)return;const key=rounds+'|'+rows.map(r=>r.reps+'x'+r.dist).join('+')+'|'+lab+'|'+(ni||0);if(seen.has(key))return;seen.add(key);out.push({rounds,rows,lab,note:notes[(ni||0)%notes.length],m})};
+  const add=(rows,rounds,lab,ni)=>{if(FASTMAX[a]&&rows.some(r=>r.dist>FASTMAX[a]))return;const m=rows.reduce((x,r)=>x+r.reps*r.dist,0)*rounds;if(m<lo||m>hi)return;const key=rounds+'|'+rows.map(r=>r.reps+'x'+r.dist).join('+')+'|'+lab+'|'+(ni||0);if(seen.has(key))return;seen.add(key);out.push({rounds,rows,lab,note:notes[(ni||0)%notes.length],m})};
   const NV=a==='C2'?4:(a==='C3'||a==='C1')?3:1;
   for(let v=0;v<NV;v++){
   for(const d of D)for(let n=2;n<=40;n++)add([{reps:n,dist:d}],1,'ripetute',v);
@@ -913,7 +916,8 @@ function setLib(a){if(LIBCACHE[a])return LIBCACHE[a];const D=LIBD[a],[lo,hi]=LIB
   for(let k=3;k<=5;k++)for(let i=0;i+k<=S.length;i++){const sl=S.slice(i,i+k);for(const rp of [1,2])for(let r=1;r<=4;r++){add(sl.map(d=>({reps:rp,dist:d})),r,'scala crescente',v);add([...sl].reverse().map(d=>({reps:rp,dist:d})),r,'scala discendente',v);add([...sl,...sl.slice(0,-1).reverse()].map(d=>({reps:rp,dist:d})),r,'piramide',v)}}
   for(const d of D)if(d>=50)for(let n=3;n<=6;n++)for(let r=2;r<=8;r++)add([{reps:n,dist:d}],r,'spezzati',v)}
   return LIBCACHE[a]=out}
-function libPick(a,st,tgt,recent,spec){const L=setLib(a);let c=L.filter(x=>Math.abs(x.m-tgt)<=tgt*.15);if(c.length<20)c=L.filter(x=>Math.abs(x.m-tgt)<=tgt*.35);if(!c.length)c=L;
+function libPick(a,st,tgt,recent,spec,pool){const L=setLib(a);let c=L.filter(x=>Math.abs(x.m-tgt)<=tgt*.15);if(c.length<20)c=L.filter(x=>Math.abs(x.m-tgt)<=tgt*.35);if(!c.length)c=L;
+  if(+pool===50&&a!=='C3'){const f=c.filter(x=>x.rows.every(r=>r.dist%50===0));if(f.length>=10)c=f}
   /* velocisti: distanze più corte; fondisti: distanze più lunghe */
   if(spec==='vel'||spec==='fondo'){const md=x=>Math.max(...x.rows.map(r=>r.dist));const lim=spec==='vel'?{A1:200,A2:200,B1:100,B2:75,C1:50,C2:50}[a]:{A1:400,A2:300,B1:200,B2:100,C1:75}[a];
     if(lim){const f=c.filter(x=>spec==='vel'?md(x)<=lim:md(x)>=lim);if(f.length>=10)c=f}}
@@ -921,11 +925,25 @@ function libPick(a,st,tgt,recent,spec){const L=setLib(a);let c=L.filter(x=>Math.
     const rows=x.rows.map((r,j)=>R(r.reps,r.dist,'@','N',a,j===0?(x.lab==='spezzati'?'spezzato: 10" tra le frazioni · ':'')+x.note:''));
     if((a==='C1'||a==='C2')&&x.rounds>1&&x.lab!=='spezzati')rows.push(R(1,100,'ST','N','A1','recupero attivo sciolto'));
     return{rows,rounds:x.rounds,label:x.lab,src:'Libreria '+a+': '+x.lab,shape}}}}
-/* sicurezza: da B2 in su nessuna ripetuta da 200 m o più (viene frazionata in 100) */
-function splitFast(blocks){for(const b of blocks)for(const r of b.rows)if(FAST.includes(r.and)&&+r.dist>=200){const k=Math.round(r.dist/100);r.reps=(+r.reps||1)*k;r.dist=100}}
-function chooseMain(a,st,tgt,sty,recent,spec){
+/* sicurezza: B2, C1, C2 oltre i 100 m (e C3 oltre i 50) vengono frazionati mantenendo i metri */
+function splitFast(blocks){for(const b of blocks)for(const r of b.rows)if(tooLong(r)){const mx=FASTMAX[r.and],d=+r.dist;const u=[100,50,25].find(x=>x<=mx&&d%x===0)||mx;r.reps=Math.max(1,Math.round((+r.reps||1)*d/u));r.dist=u}}
+/* vasca lunga: ogni ripetuta deve finire al muro (multipli di 50). Restituisce quante righe ha adattato */
+/* adatta alla vasca da 50 e ricalcola le ripartenze delle righe cambiate */
+function adaptLC(w){const ctx=pa(w);const before=new Map();w.blocks.forEach(b=>b.rows.forEach(r=>before.set(r,r.dist+'|'+r.reps)));const n=adaptPool(w);if(n)w.blocks.forEach(b=>b.rows.forEach(r=>{if(before.get(r)!==r.dist+'|'+r.reps||r.rs)r.send=autoSend(r,ctx)}));return n}
+function adaptPool(w){if(+w.pool!==50)return 0;let n=0;
+  for(const b of w.blocks)for(const r of b.rows){const d=+r.dist;if(!d||d%50===0)continue;n++;const tq=r.tec&&TECHBY[r.tec];const reps=+r.reps||1;
+    if(tq&&tq.cat==='virata'){r.dist=100;r.reps=Math.max(2,Math.ceil(reps/2));r.note=`${tq.name}: 50 sciolto con gli ultimi 10 m veloci, virata, esci forte fino a 15 m, poi sciolto`;continue}
+    if(tq&&tq.cat==='partenza'){r.dist=50;r.note=tq.name+(r.and==='C3'?' + 15 m veloci, poi sciolto fino in fondo':' · esecuzione tecnica, poi sciolto fino in fondo');continue}
+    if(r.mix&&d<50){r.dist=50;r.note=(r.note||'').replace('12,5 m a tutta + 12,5 sciolto','25 m a tutta + 25 sciolti').replace('12,5 veloce + 12,5 sciolto','25 veloce + 25 sciolto').replace('15 m esplosivi + 10 m sciolti','15 m esplosivi + 35 m sciolti');if(/12,5|dispari/.test(r.note)||r.mixd===12.5)r.mixd=r.mixd===12.5?25:50;continue}
+    if(r.and==='C3'&&d<50){const nt=(r.note||'').replace('lanciati dalla virata','lanciati: parti sciolto e accelera').replace(/^\d+(,\d+)? m /,'');r.dist=50;r.mix=1;r.mixd=d;r.rs=60;delete r.minr;r.note=`${d} m a tutta${nt?' · '+nt:''}, poi sciolto fino in fondo`;continue}
+    let nd;if(d<50)nd=50;else if(d===75)nd=(FASTMAX[r.and]&&r.and!=='B2'&&r.and!=='C1')?50:100;else nd=Math.max(50,Math.round(d/50)*50);
+    if(FASTMAX[r.and]&&nd>FASTMAX[r.and])nd=FASTMAX[r.and];
+    r.reps=Math.max(1,Math.round(reps*d/nd));if(r.minr&&r.reps<r.minr)r.reps=r.minr;r.dist=nd;
+    r.note=(r.note||'').replace('tra i 25','tra i 50').replace('25 drill + 50 nuotato','25 esercizio + 75 nuotato')}
+  return n}
+function chooseMain(a,st,tgt,sty,recent,spec,pool){
   const c=[];
-  c.push({w:5,shape:'lib2',make:()=>libPick(a,st,tgt,recent,spec)});
+  c.push({w:5,shape:'lib2',make:()=>libPick(a,st,tgt,recent,spec,pool)});
   MAIN_T.filter(t=>t.ands.includes(a)).forEach(t=>c.push({w:(t.k==='ripetute'?1.2:1)*(spec&&t.sp?(t.sp.includes(spec)?2.2:.35):1),shape:'lib:'+t.k,make:()=>{const rows=t.build(a,st,tgt,sty);const s=scaleSet(rows,1,tgt,t.mode);return{...s,label:t.lab,src:'Libreria: '+t.lab,shape:'lib:'+t.k}}}));
   if(sty&&sty.use>0){const mine=sty.mains[a]||[];mine.filter(t=>mixOk(intenseOf(t.rows))).forEach(t=>c.push({w:sty.use*(t.done?3:2.2)*Math.min(1,4/mine.length)*2,shape:t.shape,make:()=>({...scaleSet(t.rows,t.rounds,tgt),label:t.name,src:`Dal tuo archivio (${fmtD(t.date)})`,shape:t.shape})}))}
   (S.favs||[]).filter(f=>f.a===a&&mixOk(intenseOf(f.rows))).forEach(f=>c.push({w:3,shape:f.shape,make:()=>({...scaleSet(f.rows,f.rounds,tgt),label:f.name,src:'Dai tuoi preferiti',shape:f.shape})}));
@@ -944,7 +962,7 @@ function genWorkout(o){
   const wuSet=(useMine()&&sty.wu.length)?(t=>({...scaleSet(t.rows,t.rounds,vol*.2),src:'Dal tuo archivio'}))(pick(sty.wu)):pick(WU_T)(st);
   const myDrill=(useMine()&&sty.drills.length)?pick(sty.drills):null;const recTec=o.recTec||recentTec(o.date);
   const eqMode=o.eq||'int';const sedOk=['generale','fondamentale','nogoal','recupero'].includes(ph.k)&&eqMode==='sed';
-  const main=sedOk?eqMain(st,vol,ph):chooseMain(a,st,mainTgt(a,vol,L,o.spec),sty,recent,o.spec);
+  const main=sedOk?eqMain(st,vol,ph):chooseMain(a,st,mainTgt(a,vol,L,o.spec),sty,recent,o.spec,pool);
   const cdSet=(useMine()&&sty.cd.length)?(t=>({...scaleSet(t.rows,t.rounds,Math.max(150,vol*.06)),src:'Dal tuo archivio'}))(pick(sty.cd)):{rows:pick(CD_T)()};
   const bWU=B(N('wu','Riscaldamento'),wuSet,{src:wuSet.src||'',role:'wu'}),bTec=B(N('tec','Tecnica'),{rows:tecRows(st,vol,myDrill,recTec)},{role:'tec'}),bAtt=B(N('att','Attivazione'),actSet(a,st,vol,sedOk),{act:1,role:'att'});
   const bMain=B(sedOk?'Serie con attrezzi · forza e tecnica':N('main','Serie centrale')+(main.label&&String(main.src).startsWith('Libreria')&&main.label!=='ripetute'?' · '+main.label:''),main,{src:main.src,shape:main.shape,main:1,role:'main'});
@@ -962,7 +980,7 @@ function genWorkout(o){
   eqSanitize(w0,ph);
   blocks.forEach(b=>b.rows.forEach(r=>{r.id=uid8();r.send=autoSend(r,ath)}));
   const w={id:uid8(),date:o.date,title:sedOk?`Seduta con attrezzi · ${STROKES[st]}`:`${AI[a].nome} · ${STROKES[st]}`,ath:o.ath||'',...(o.group?{group:o.group}:{}),pool,blocks,done:false,rpe:null,notes:'',gen:o.gen||null,src:'gen',main:sedOk?wMainRaw({blocks:[bMain]}):a,...(sedOk?{eqFocus:true}:{}),...(eqMode==='sed'&&!sedOk?{genNote:`Seduta con attrezzi non indicata in ${ph.name.toLowerCase()}: per non interferire con la preparazione alla gara gli attrezzi sono solo integrati, entro il ${Math.round((EQPH[ph.k]||EQPH.nogoal).max*100)}% del volume.`}:{})};
-  fitOpen(bWU,vol-wMeters(w),clampN(Math.round(vol*.18/50)*50,350,500),clampN(Math.round(vol*L.wu/50)*50,400,800),200);if(Math.abs(vol-wMeters(w))>150)fitOpen(bCd,vol-wMeters(w),100,400,100);
+  adaptPool(w);fitOpen(bWU,vol-wMeters(w),clampN(Math.round(vol*.18/50)*50,350,500),clampN(Math.round(vol*L.wu/50)*50,400,800),200);if(Math.abs(vol-wMeters(w))>150)fitOpen(bCd,vol-wMeters(w),100,400,100);
   {let g=0;while(wMeters(w)-vol>120&&g++<120){if(!shrinkOnce(w)&&!shrinkDeep(w))break}
    blocks.forEach(b=>b.rows.forEach(r=>{r.send=autoSend(r,ath)}))}
   let rest=vol-wMeters(w);if(rest>=200){const d=Math.round(rest/100)*100;const lo=['C1','C2','C3','B2'].includes(a);const s2=st==='RA'||st==='ST'?'SL':st;const nn=(m,L)=>Math.max(1,Math.floor((m+50)/L));
@@ -971,7 +989,7 @@ function genWorkout(o){
       :[R(nn(d,d>=400?200:100),d>=400?200:100,st==='ST'?'SL':st,'N','A2','aerobico a ritmo costante')];
     rows.forEach(r=>{r.id=uid8();r.send=autoSend(r,ath)});
     if((+bComp.rounds||1)>1||!blocks.includes(bComp)||lo)blocks.splice(blocks.indexOf(bCd),0,{id:uid8(),name:N('aer','Serie aerobica'),rounds:1,rows,role:'aer'});else bComp.rows.push(...rows)}
-  splitFast(blocks);if(eqMode==='no')blocks.forEach(b=>b.rows.forEach(r=>r.eq=[]));eqSanitize(w,ph);blocks.forEach(b=>b.rows.forEach(r=>{r.send=autoSend(r,ath)}));
+  splitFast(blocks);adaptPool(w);if(eqMode==='no')blocks.forEach(b=>b.rows.forEach(r=>r.eq=[]));eqSanitize(w,ph);blocks.forEach(b=>b.rows.forEach(r=>{r.send=autoSend(r,ath)}));
   return w}
 /* seduta costruita sul tempo in vasca: stima i metri dal ritmo A2 dell'atleta, poi corregge sulla durata reale */
 function estVol(o,min){const ctx=withPool(genAth(o.ath),o.pool||S.settings.pool||25);ctx._rf=profFor(o).restF;const st=o.st||'SL';const p=workTime(ctx,{dist:100,st:st==='ST'?'SL':st,kind:'N',and:'A2'});const snd=sendoff(p,'A2',ctx._rf);return clampN(Math.round(min*60/(snd/100)/1.3/100)*100,800,6000)}
@@ -1056,8 +1074,8 @@ function planProgram(o){
         if(LAC.includes(mn))lacWeek[ws]=(lacWeek[ws]||0)+1;
         let em=o.eq==='no'||pre?'no':'int';if(!pre&&o.eq==='sed'&&!eqWeek[ws]&&['generale','fondamentale','nogoal'].includes(ph.k)&&(mn==='A2'||mn==='A1'||mn==='B1')){em='sed';eqWeek[ws]=1}
         const swk=skillWeek[ws]||(skillWeek[ws]={v:0,p:0});const lateP=['specifico','rifinitura','scarico','attivazione'].includes(ph.k);
-        let sk=!swk.v?'virate':(lateP&&!swk.p)?'partenze':(Math.random()<.45?'none':null);if(['scarico','attivazione'].includes(ph.k)&&swk.v&&swk.p)sk=Math.random()<.5?'partenze':'entrambi';if(pre)sk='partenze';
-        const w=genAny({by:o.by,min:mins,date:d,ath:o.ath,vol:v,st:o.st,main:mn,goal:o.goal,gen:gid,pool:o.pool,sty,spec:o.spec,group:o.group,skill:sk,recTec:recentTec(d,madeTec.slice(-10)),recent:recentShapes(d,made.slice(-6)),eq:em});
+        let sk=(lateP&&!swk.v&&!swk.p)?'entrambi':!swk.v?'virate':(lateP&&!swk.p)?'partenze':(Math.random()<.45?'none':null);if(['scarico','attivazione'].includes(ph.k)&&swk.v&&swk.p)sk=Math.random()<.5?'partenze':'entrambi';if(pre)sk='partenze';
+        const w=genAny({by:o.by,min:mins,date:d,ath:o.ath,vol:v,st:o.st,main:mn,goal:o.goal,gen:gid,pool:o.pool,sty,spec:o.spec,group:o.group,skill:sk,recTec:recentTec(d,madeTec.slice(-10)),recent:recentShapes(d,made.slice(-14)),eq:em});
         if(pre){w.title=`Vigilia di gara · ${STROKES[o.st||'SL']}`;w.genNote=`Domani c'è «${pre.name}»: volume basso, partenze e qualche sprint con recupero completo per arrivare freschi.`}
         else if(dn===2&&nx.imp!=='C')w.genNote=`Tra 2 giorni c'è «${nx.name}»: niente lavori duri, solo aerobico e velocità breve.`;
         else if(dp===1)w.genNote=`Il giorno dopo «${pv.name}»: seduta aerobica per smaltire la fatica della gara.`;
@@ -1309,7 +1327,7 @@ function vEdit(){
     <div class="form" style="grid-template-columns:1fr"><label class="field"><span>Fatica percepita (RPE 1–10)</span><input type="range" min="0" max="10" class="slider" id="wrpe" data-w="rpe" value="${w.rpe||0}"><span class="num" id="rpev">${w.rpe?w.rpe+'/10':'non indicata'}</span></label>
     <label class="field"><span>Note</span><textarea class="inp" id="wnotes" data-w="notes" rows="3" style="font-family:var(--f-body)" placeholder="Sensazioni, tempi nuotati, cosa cambiare">${esc(w.notes)}</textarea></label></div></div>
   </div>`}
-function whyBox(w){const pi=phaseAt(w.date,wGoal(w));const o=wByAnd(w);const list=ANDS.filter(a=>o[a]);if(!list.length)return '<span class="muted">Aggiungi delle serie per vedere la spiegazione.</span>';const I=list.filter(INT);const warn=(I.includes('C1')&&I.includes('C2'))?'C1 e C2 nella stessa seduta: meglio dividerle in sedute diverse, ognuna richiede 48–72 ore di recupero.':I.length>2?`Ci sono ${I.length} andature intense (${I.join(', ')}): con più di due la seduta perde un obiettivo chiaro.`:'';const longF=[...new Set(w.blocks.flatMap(b=>b.rows).filter(r=>FAST.includes(r.and)&&+r.dist>=200).map(r=>r.and))];const W=[warn,longF.length?`Ripetute da 200 m o più in ${longF.join(', ')}: da B2 in su meglio frazionare (es. 2×100 o 4×50).`:'',...eqWarnings(w)].filter(Boolean).map(x=>`<div class="tip warn"><span class="ic">!</span><div>${x}</div></div>`).join('');
+function whyBox(w){const pi=phaseAt(w.date,wGoal(w));const o=wByAnd(w);const list=ANDS.filter(a=>o[a]);if(!list.length)return '<span class="muted">Aggiungi delle serie per vedere la spiegazione.</span>';const I=list.filter(INT);const warn=(I.includes('C1')&&I.includes('C2'))?'C1 e C2 nella stessa seduta: meglio dividerle in sedute diverse, ognuna richiede 48–72 ore di recupero.':I.length>2?`Ci sono ${I.length} andature intense (${I.join(', ')}): con più di due la seduta perde un obiettivo chiaro.`:'';const longF=[...new Set(w.blocks.flatMap(b=>b.rows).filter(tooLong).map(r=>r.and))];const lcBad=+w.pool===50&&w.blocks.some(b=>b.rows.some(r=>+r.dist&&+r.dist%50));const W=[warn,longF.length?`Ripetute troppo lunghe in ${longF.join(', ')}: B2, C1 e C2 al massimo 100 m, C3 al massimo 50 m (es. 2×100 diventa 4×50).`:'',lcBad?'Vasca da 50 m: alcune distanze non finiscono al muro (es. 25 o 75). Cambia vasca e torna a 50 per adattarle in automatico.':'',...eqWarnings(w)].filter(Boolean).map(x=>`<div class="tip warn"><span class="ic">!</span><div>${x}</div></div>`).join('');
   return W+list.map(a=>{const y=whyAnd(a,pi);return `<div class="why-i">${andChip(a,w.date)}<div><span class="status ${y.st}">${STLAB[y.st]}</span> <span class="muted">${AI[a].nome}</span><div style="margin-top:3px">${y.txt}</div></div></div>`}).join('')}
 function updTotals(){const w=V.draft;if(!w)return;const el=$('#totals');if(!el)return;const ath=pa(w),m=wMeters(w),o=wByAnd(w);
   el.innerHTML=`<div><div class="k">Totale</div><div class="v">${mfmt(m)}<small style="font-size:.9rem;color:var(--muted)"> m</small></div></div><div><div class="k">Durata</div><div class="v">${fmtDur(wDur(w,ath))}</div></div><div style="min-width:0">${distBar(o)}<div class="legend" style="margin-top:6px">${ANDS.filter(a=>o[a]).map(a=>`<span class="${a}"><i></i>${a} <span class="num muted">${mfmt(o[a])}</span></span>`).join('')}</div></div><div class="btns"><button class="btn sm" data-act="nav" data-v="sedute">Fatto</button></div>`;
@@ -1510,7 +1528,7 @@ function vAnd(){
     <div class="body"><p><b>A ${d} giorni dalla gara.</b> ${y.txt}</p><p class="muted">${I.scopo}</p>
      <dl class="kv"><dt>Lattato</dt><dd>${I.lat}</dd><dt>Frequenza</dt><dd>${fcTxt(a,refAge(S.settings.ath))}</dd><dt>Sensazione</dt><dd>${I.sens} · RPE ${I.rpe}</dd><dt>Ripetute</dt><dd>${I.rip}</dd><dt>Recuperi</dt><dd>${I.rec}</dd><dt>Volume serie</dt><dd>${I.vol}</dd><dt>Ritmo /100 SL</dt><dd class="num">${fmtSwim(w)}<span class="muted"> (${ath?esc(ath.name)+', ':'tempi generici, '}${+S.settings.pool===50?'50 m':'25 m'})</span></dd></dl>
      <div class="btns">${I.es.map(e=>`<span class="pill mono" style="font-size:.74rem">${esc(e)}</span>`).join('')}</div>
-     <p class="muted" style="font-size:.8rem">Libreria del generatore: <b>${mfmt(setLib(a).length)}</b> serie diverse, combinando ${LIBD[a].join(', ')} m${FAST.includes(a)?' (mai 200 m o più)':''}.</p></div></article>`}).join('')}</div>`}
+     <p class="muted" style="font-size:.8rem">Libreria del generatore: <b>${mfmt(setLib(a).length)}</b> serie diverse, combinando ${LIBD[a].join(', ')} m${FASTMAX[a]?` (mai oltre i ${FASTMAX[a]} m)`:''}.</p></div></article>`}).join('')}</div>`}
 function andSheet(a,date){const I=AI[a];const d=date||today();const pi=phaseAt(d);const y=whyAnd(a,pi);
   openSheet(`<div style="display:flex;gap:12px;align-items:center" class="${a}"><span style="font-family:var(--f-disp);font-weight:800;font-size:2.6rem;color:var(--c);line-height:.9">${a}</span><div><h2>${I.nome}</h2><div class="muted" style="font-size:.85rem">${I.sistema}</div></div></div>
   <p>${I.scopo}</p>
@@ -1865,9 +1883,9 @@ document.addEventListener('input',e=>{const el=e.target;
       const tg=row.querySelector('[data-tgt]');if(tg)tg.textContent=rowTarget(r,pa(V.draft));updTotals();schedSave();return}
     if(el.dataset.bk==='name'){V.draft.blocks[+el.dataset.b].name=el.value;schedSave();return}
     if(el.dataset.bk==='rounds'){const bi=+el.dataset.b,b=V.draft.blocks[bi];b.rounds=Math.max(1,parseInt(el.value,10)||1);const g=document.querySelector(`[data-rg="${bi}"]`);if(g)g.className=b.rounds>1?'rgroup':'';updTotals();schedSave();return}
-    if(el.dataset.w){const k=el.dataset.w;if(k==='rpe'){V.draft.rpe=+el.value||null;$('#rpev').textContent=V.draft.rpe?V.draft.rpe+'/10':'non indicata'}else if(k==='group'){const oc=pa(V.draft);const g=grpById(el.value);if(g){V.draft.group=g.id;const r=grpRef(g);if(r)V.draft.ath=r}else delete V.draft.group;const n=reSend(V.draft,oc,pa(V.draft));schedSave();render();toast(g?`Seduta assegnata a ${grpLanes(g)||grpName(g)}${n?`: ${n} ripartenze ricalcolate`:''}`:'Seduta senza gruppo');return}else if(k==='pool'||k==='ath'){const oc=pa(V.draft);if(k==='pool')V.draft.pool=+el.value;else V.draft.ath=el.value;const n=reSend(V.draft,oc,pa(V.draft));schedSave();render();toast(k==='pool'?`Tempi e ripartenze aggiornati per ${POOLN[V.draft.pool]}${n?` (${n} ripartenze cambiate)`:''}`:`Tempi e ripartenze aggiornati sui tempi di ${curAth(V.draft)?curAth(V.draft).name:'riferimento generici'}`);return}else V.draft[k]=el.value;schedSave();if(k==='date'||k==='ath'||k==='pool'){updTotals();document.querySelectorAll('[data-ri]').forEach(rw=>{const[bi,ri]=rw.dataset.ri.split(':').map(Number);const tg=rw.querySelector('[data-tgt]');if(tg)tg.textContent=rowTarget(V.draft.blocks[bi].rows[ri],pa(V.draft))})}return}}
+    if(el.dataset.w){const k=el.dataset.w;if(k==='rpe'){V.draft.rpe=+el.value||null;$('#rpev').textContent=V.draft.rpe?V.draft.rpe+'/10':'non indicata'}else if(k==='group'){const oc=pa(V.draft);const g=grpById(el.value);if(g){V.draft.group=g.id;const r=grpRef(g);if(r)V.draft.ath=r}else delete V.draft.group;const n=reSend(V.draft,oc,pa(V.draft));schedSave();render();toast(g?`Seduta assegnata a ${grpLanes(g)||grpName(g)}${n?`: ${n} ripartenze ricalcolate`:''}`:'Seduta senza gruppo');return}else if(k==='pool'||k==='ath'){const oc=pa(V.draft);if(k==='pool')V.draft.pool=+el.value;else V.draft.ath=el.value;const n=reSend(V.draft,oc,pa(V.draft));const ad=k==='pool'?adaptLC(V.draft):0;schedSave();render();toast(k==='pool'?`Tempi e ripartenze aggiornati per ${POOLN[V.draft.pool]}${n?` (${n} ripartenze cambiate)`:''}${ad?` · ${ad} distanze adattate alla vasca da 50`:''}`:`Tempi e ripartenze aggiornati sui tempi di ${curAth(V.draft)?curAth(V.draft).name:'riferimento generici'}`);return}else V.draft[k]=el.value;schedSave();if(k==='date'||k==='ath'||k==='pool'){updTotals();document.querySelectorAll('[data-ri]').forEach(rw=>{const[bi,ri]=rw.dataset.ri.split(':').map(Number);const tg=rw.querySelector('[data-tgt]');if(tg)tg.textContent=rowTarget(V.draft.blocks[bi].rows[ri],pa(V.draft))})}return}}
   if(el.dataset.g==='group'){const v=el.value;const g=grpById(v);const o=V.genOpt;if(g)V.genOpt={...grpOpt(g,o.date),pool:o.pool};else{o.group=v;if(!v){delete o.spec;o.goal=''}}V.genPrev=null;V.genAll=null;render();return}
-  if(el.dataset.g){const o=V.genOpt;if((el.dataset.g==='pool'||el.dataset.g==='ath')&&V.genPrev){const pw=V.genPrev,oc=pa(pw);if(el.dataset.g==='pool')pw.pool=+el.value;else pw.ath=el.value;reSend(pw,oc,pa(pw));o[el.dataset.g]=el.dataset.g==='pool'?+el.value:el.value;render();toast('Anteprima aggiornata');return}o[el.dataset.g]=(['vol','pool','min'].includes(el.dataset.g))?+el.value:el.value;if(el.dataset.g==='vol'){$('#go-volv').textContent=mfmt(o.vol)+' m';return}if(['date','min','ath','st'].includes(el.dataset.g)){render();return}return}
+  if(el.dataset.g){const o=V.genOpt;if((el.dataset.g==='pool'||el.dataset.g==='ath')&&V.genPrev){const pw=V.genPrev,oc=pa(pw);if(el.dataset.g==='pool')pw.pool=+el.value;else pw.ath=el.value;reSend(pw,oc,pa(pw));if(el.dataset.g==='pool')adaptLC(pw);o[el.dataset.g]=el.dataset.g==='pool'?+el.value:el.value;render();toast('Anteprima aggiornata');return}o[el.dataset.g]=(['vol','pool','min'].includes(el.dataset.g))?+el.value:el.value;if(el.dataset.g==='vol'){$('#go-volv').textContent=mfmt(o.vol)+' m';return}if(['date','min','ath','st'].includes(el.dataset.g)){render();return}return}
   if(el.dataset.p){const q=V.progOpt;const k=el.dataset.p;if(k==='eq'){q.eq=el.value;V.progPrev=null;return}if(k==='replace')q.replace=el.checked;else if(k==='pool'){q.pool=+el.value;V.progPrev=null}else if(k==='min'){q.min=+el.value;V.progPrev=null}else if(k==='vol'){q.vol=+el.value;$('#pg-volv').textContent=mfmt(q.vol)+' m'}else q[k]=el.value;
     if(k==='goal'){const r=S.races.find(x=>x.id===el.value);if(r)q.to=addDays(r.date,-1);V.progPrev=null;render()}
     if(k==='group'){const g=grpById(el.value);if(g){q.st=g.st||'SL';q.min=g.min||q.min;q.days=[...(g.days||q.days)];if(g.goal){q.goal=g.goal;const r=S.races.find(x=>x.id===g.goal);if(r)q.to=addDays(r.date,-1)}}V.progPrev=null;render()}return}
